@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
+import org.xml.sax.DTDHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -30,6 +31,7 @@ public class KochbuchParser {
     public KochbuchParser (String uri) throws SAXException, IOException {
          parser = XMLReaderFactory.createXMLReader("org.apache.xerces.parsers.SAXParser");
          parser.setContentHandler(new KochbuchContentHandler());
+         parser.setDTDHandler(new KochbuchDTDHandler());
          parser.parse(uri);
     }
     
@@ -41,6 +43,20 @@ public class KochbuchParser {
         for (Kochrezept kr : sammlung) {
             System.out.println(kr);
         }
+    }
+    
+    class KochbuchDTDHandler implements DTDHandler {
+
+        @Override
+        public void notationDecl(String string, String string1, String string2) throws SAXException {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void unparsedEntityDecl(String string, String string1, String string2, String string3) throws SAXException {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+        
     }
     
     class KochbuchContentHandler implements ContentHandler {
