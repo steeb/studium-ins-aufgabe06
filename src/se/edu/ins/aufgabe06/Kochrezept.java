@@ -17,6 +17,7 @@ public class Kochrezept {
     private String untertitel;
     private String kurzbeschreibung;
     private String author;
+    private String kategorie;
     private Date date;
     private List<Zutat> einkaufsliste;
     private List<String> rezeptschritte;
@@ -37,6 +38,18 @@ public class Kochrezept {
         
         public void setBezeichner(String bezeichner) {
             this.bezeichner = bezeichner;
+        }
+
+        public String getBezeichner() {
+            return bezeichner;
+        }
+
+        public String getMenge() {
+            return menge;
+        }
+
+        public String getName() {
+            return name;
         }
         
         @Override
@@ -71,6 +84,46 @@ public class Kochrezept {
     }
     
     public void setRezeptSchritte(List<String> rezeptschritte) {
+        this.rezeptschritte = rezeptschritte;
+    }
+    
+    public void setKategorie(String kategorie) {
+        this.kategorie = kategorie;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public List<Zutat> getEinkaufsliste() {
+        return einkaufsliste;
+    }
+
+    public String getKategorie() {
+        return kategorie;
+    }
+
+    public String getKurzbeschreibung() {
+        return kurzbeschreibung;
+    }
+
+    public List<String> getRezeptschritte() {
+        return rezeptschritte;
+    }
+
+    public String getTitel() {
+        return titel;
+    }
+
+    public String getUntertitel() {
+        return untertitel;
+    }
+
+    public void setRezeptschritte(List<String> rezeptschritte) {
         this.rezeptschritte = rezeptschritte;
     }
     

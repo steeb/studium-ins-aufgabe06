@@ -19,5 +19,10 @@ public class INSAufgabe06 {
     public static void main(String[] args) throws SAXException, IOException {
         KochbuchParser kochbuchParser = new KochbuchParser("/home/steeb/studium.git/ins/praktikum/uebung5/kochrezepte.xml");
         kochbuchParser.debugPrint();
+        KochbuchModifier kochbuchModifier = new KochbuchModifier(kochbuchParser.getSammlung());
+        kochbuchModifier.modifyKategorie();
+        KochbuchWriter kochbuchWriter = new KochbuchWriter("kochbuch.xml");
+        kochbuchWriter.write(kochbuchModifier.getKochbuch());
+        
     }
 }
