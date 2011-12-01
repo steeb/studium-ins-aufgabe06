@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sammlung>
+    <kochbuch datum="2011-11-19" koch="Hans Palino">
+        <info>
+            <titel>Leckerschmecker Pfanne</titel>
+            <untertitel>Die leckerste Pfanne der Welt</untertitel>
+            <kurzbeschreibung>Leckeres schnelles Essen. Ideal für Studenten.</kurzbeschreibung>
+        </info>
+        <einkaufsliste>
+            <zutat bezeichner="iwas" menge="3">Pommes</zutat>
+            <zutat bezeichner="bla" menge="2">Gurken</zutat>
+        </einkaufsliste>
+        <rezept>
+            <anweisung>Matsche alles zusammen</anweisung>
+        </rezept>
+    </kochbuch>
+    <kochbuch datum="2011-01-21" koch="Paul Panter">
+        <info>
+            <titel>Pizzateig</titel>
+            <untertitel>der originale und berühmte Pan-Teig von Pizza Hut</untertitel>
+            <kurzbeschreibung>Pizzzzzzzza halt</kurzbeschreibung>
+        </info>
+        <einkaufsliste>
+            <zutat bezeichner="Pck." menge="1/2">Hefe</zutat>
+            <zutat bezeichner="EL" menge="1/2">Zucker</zutat>
+            <zutat bezeichner="TL" menge="1/4">Salz</zutat>
+            <zutat bezeichner="Tasse" menge="1/4">Milch</zutat>
+            <zutat bezeichner="Tasse" menge="1/4">Wasser, warmes</zutat>
+            <zutat bezeichner="EL" menge="1">Olivenöl</zutat>
+            <zutat bezeichner="Tasse" menge="2">Mehl</zutat>
+        </einkaufsliste>
+        <rezept>
+            <anweisung>In einer Schüssel Hefe, Zucker, Salz vermischen. Wasser und Milch dazugeben. Alles gut verrühren.</anweisung>
+            <anweisung>ca. 2 Min. stehen lassen</anweisung>
+            <anweisung>Öl zugeben und verrühren</anweisung>
+            <anweisung>Mehl dazuschütten und alles gut verkneten, bis ein glatter Teig entsteht. Auf einer glatten Oberfläche ca. 10 Min. lang kneten.</anweisung>
+            <anweisung>Teige ausrollen und in geölte runde Formen geben.</anweisung>
+        </rezept>
+    </kochbuch>
+</sammlung>

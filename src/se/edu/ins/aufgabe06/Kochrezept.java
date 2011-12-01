@@ -4,8 +4,12 @@
  */
 package se.edu.ins.aufgabe06;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import org.apache.xerces.dom.ElementImpl;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  *
@@ -55,6 +59,14 @@ public class Kochrezept {
         @Override
         public String toString() {
             return this.name + " (" + this.menge + " " + this.bezeichner + ")"; 
+        }
+        
+        public Element getAsXMLElement(Document doc) {
+            Element eZutat = doc.createElement("zutat");
+            eZutat.setAttribute("menge", this.getMenge());
+            eZutat.setAttribute("bezeichner", this.getBezeichner());
+            eZutat.setTextContent(this.getName());
+            return eZutat;
         }
         
     }
@@ -141,5 +153,38 @@ public class Kochrezept {
         for (String s : rezeptschritte)
             teil0 += s + "\n";
         return teil0;
+    }
+    
+    public Element getAsXMLElement(Document doc) {
+        Element eKochbuch = doc.createElement("kochbuch");
+        eKochbuch.setAttribute("koch", this.getAuthor());
+        eKochbuch.setAttribute("datum", new SimpleDateFormat("yyyy-mm-dd").format(this.getDate()));
+        Element eInfo = doc.createElement("info");
+        Element eTitel = doc.createElement("titel");
+        eTitel.setTextContent(this.getTitel());
+        eInfo.appendChild(eTitel);
+        Element eUntertitel = doc.createElement("untertitel");
+        eUntertitel.setTextContent(this.getUntertitel());
+        eInfo.appendChild(eUntertitel);
+        Element ekurzbeschreibung = doc.createElement("kurzbeschreibung");
+        ekurzbeschreibung.setTextContent(this.getKurzbeschreibung());
+        eInfo.appendChild(ekurzbeschreibung);
+        eKochbuch.appendChild(eInfo);
+        Element eEinkaufsliste = doc.createElement("einkaufsliste");
+        for (Zutat z : einkaufsliste)
+            eEinkaufsliste.appendChild(z.getAsXMLElement(doc));
+        eKochbuch.appendChild(eEinkaufsliste);
+        Element eRezept = doc.createElement("rezept");
+        for (String s : rezeptschritte) {
+            Element eSchritt = doc.createElement("anweisung");
+            eSchritt.setTextContent(s);
+            eRezept.appendChild(eSchritt);
+        }
+        eKochbuch.appendChild(eRezept);
+        Element eKategorie = doc.createElement("kategorie");
+        eKategorie.setTextContent(this.getKategorie());
+        eKochbuch.appendChild(eKategorie);
+        doc.appendChild(eKochbuch);
+        return eKochbuch;
     }
 }

@@ -13,8 +13,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
@@ -30,6 +32,7 @@ public class KochbuchParser {
     public KochbuchParser (String uri) throws SAXException, IOException {
          parser = XMLReaderFactory.createXMLReader("org.apache.xerces.parsers.SAXParser");
          parser.setContentHandler(new KochbuchContentHandler());
+         parser.setErrorHandler(new KochbuchErrorHandler());
          parser.setFeature("http://xml.org/sax/features/validation", true);
          parser.parse(uri);
     }
@@ -42,6 +45,28 @@ public class KochbuchParser {
         for (Kochrezept kr : sammlung) {
             System.out.println(kr);
         }
+    }
+    
+    class KochbuchErrorHandler implements ErrorHandler {
+
+        @Override
+        public void warning(SAXParseException saxpe) throws SAXException {
+            System.out.printf("Warning at %d,%d: %s", saxpe.getLineNumber(),
+                    saxpe.getColumnNumber(), saxpe.getPublicId());
+        }
+
+        @Override
+        public void error(SAXParseException saxpe) throws SAXException {
+            System.out.printf("Error at %d,%d: %s", saxpe.getLineNumber(),
+                    saxpe.getColumnNumber(), saxpe.getPublicId());
+        }
+
+        @Override
+        public void fatalError(SAXParseException saxpe) throws SAXException {
+            System.out.printf("Fatal Error at %d,%d: %s", saxpe.getLineNumber(),
+                    saxpe.getColumnNumber(), saxpe.getPublicId());
+        }
+        
     }
     
     class KochbuchContentHandler implements ContentHandler {
