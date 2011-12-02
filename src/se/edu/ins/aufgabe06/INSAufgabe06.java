@@ -23,6 +23,5 @@ public class INSAufgabe06 {
         kochbuchModifier.modifyKategorie();
         KochbuchWriter kochbuchWriter = new KochbuchWriter("kochbuch.xml");
         kochbuchWriter.write(kochbuchModifier.getKochbuch());
-        
     }
 }
